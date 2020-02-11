@@ -1,0 +1,52 @@
+@model SpeculatorVersionOne.ViewModels.TrosakEditViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    
+<div class="bg-light prikaz-detalja-prihoda mt-3">
+        <hr />
+            <div class="row text-center">
+                <div class="col-12">
+                        <form method="POST" asp-controller="Trosak" asp-action="Edit" asp-route-id="@Model.trosak.TrosakId">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label class="text-dark control-label">Naziv</label>
+                                <label class="control-label text-primary">@Html.DisplayFor(model => model.trosak.NazivTroska)</label>
+
+                                <div class="d-inline control-label edit-icon" id="editNazivTroska">
+                                    <a onclick="ShowPoljeZaNazivTroska()">
+                                        <i class="far fa-edit ml-2"></i>
+                                    </a>
+                                </div>
+                                <input asp-for="trosak.NazivTroska" class="control-label m-auto" style="display: none;" id="poljeZaUnosNazivaTroska" />
+                             </div>
+
+                                <div class="form-group">
+                                    <label class="text-dark control-label">Iznos</label>
+                                    <label class="control-label text-primary">@Html.DisplayFor(model => model.trosak.IznosTroska)</label>
+                                    <div class="d-inline control-label edit-icon" id="editIznosTroska">
+                                        <a onclick="ShowPoljeZaIznosTroska()">
+                                            <i class="far fa-edit ml-2"></i>
+                                        </a>
+                                    </div>
+                                    <input asp-for="trosak.IznosTroska" class="control-label m-auto" style="display: none;" id="poljeZaUnosIznosaTroska" />
+                                </div>
+                
+
+                                <div class="form-group">
+                                    <label class="text-dark control-label">Datum</label>
+                                    <label class="control-label text-primary">@Html.DisplayFor(model => model.trosak.VremeTroska)</label>
+                                </div>
+
+                                 <input type="hidden" asp-for="trosak.TrosakId" />
+
+                                <div class="form-group">
+                                    <input type="submit" value="Snimi" class="btn btn-warning" />
+                                </div>
+                </form>
+            </div>
+        </div>
+    </div>

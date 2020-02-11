@@ -1,0 +1,53 @@
+﻿@model SpeculatorVersionOne.ViewModels.PrihodEditViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    
+<div class="bg-light prikaz-detalja-prihoda mt-3">
+        <hr />
+            <div class="row text-center">
+                <div class="col-12">
+                        <form method="POST" asp-controller="Priliv" asp-action="Edit" asp-route-id="@Model.prihod.PrihodId">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label class="text-dark control-label">Naziv</label>
+                                <label class="control-label text-primary">@Html.DisplayFor(model => model.prihod.NazivPrihoda)</label>
+
+                                <div class="d-inline control-label edit-icon" id="editNazivPrihoda">
+                                    <a onclick="ShowPoljeZaNazivPrihoda()">
+                                        <i class="far fa-edit ml-2"></i>
+                                    </a>
+                                </div>
+                                <input asp-for="prihod.NazivPrihoda" class="control-label m-auto" style="display: none;" id="poljeZaUnosNazivaPrihoda" />
+                             </div>
+
+                                <div class="form-group">
+                                    <label class="text-dark control-label">Iznos</label>
+                                    <label class="control-label text-primary">@Html.DisplayFor(model => model.prihod.IznosPrihoda)</label>
+                                    <div class="d-inline control-label edit-icon" id="editIznosPrihoda">
+                                        <a onclick="ShowPoljeZaIznosPrihoda()">
+                                            <i class="far fa-edit ml-2"></i>
+                                        </a>
+                                    </div>
+                                    <input asp-for="prihod.IznosPrihoda" class="control-label m-auto" style="display: none;" id="poljeZaUnosIznosaPrihoda" />
+                                </div>
+                
+
+                                <div class="form-group">
+                                    <label class="text-dark control-label">Datum</label>
+                                    <label class="control-label text-primary">@Html.DisplayFor(model => model.prihod.VremePrihoda)</label>
+                                </div>
+
+                                 <input type="hidden" asp-for="prihod.PrihodId" />
+
+                                <div class="form-group">
+                                    <input type="submit" value="Snimi" class="btn btn-warning" />
+                                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+

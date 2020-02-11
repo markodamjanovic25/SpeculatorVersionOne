@@ -1,0 +1,322 @@
+body {
+    font-family: 'Century Gothic';
+    margin: 0;
+    padding: 0; 
+    /*background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);*/
+}
+::-webkit-scrollbar {
+    width: 1vw;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 2px #343a40; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #343a40;
+    border-radius: 0.4rem;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #fbc10a;
+  }
+.h-header {
+    font-size: 5vh;
+    font-weight: 550;
+    text-shadow: 0.1vh 0.1vh #343A40;
+}
+.border-header {
+    border: 5px solid #343A40;
+    border-right: 0;
+    border-left: 0;
+}
+.nav-item a{
+    font-size: 2.2vh;
+    text-shadow: 0.07vh 0.07vh #343A40;
+}
+.nav-item a:hover{
+    border-bottom: 2px solid #343A40;
+}
+.navbar-logo {
+    width: 10vh;
+    height: 10vh;
+}
+.pocetna-sadrzaj {
+    height: 75vh;
+    width: 100%; 
+    margin: 3vh auto;
+}
+.pocetna-sadrzaj .my-card-group .row {
+    height: 23vh;
+    width: 35vw;
+    margin-bottom: 1vh;
+}
+.pocetna-sadrzaj .my-card-group .col {
+    border: 5px solid #343A40;
+}
+.my-card {
+    height: 12vh;
+    width: 32vw;
+}
+.my-card-group {
+    width: 35vw;
+    margin-left: 17vw;
+}
+.lista-zelja {
+    width: 25vw;
+    
+    border: 5px solid #343A40;
+}
+
+.lista-zelja .row {
+    width: 90%;
+    height: 20%;
+    border-left: 5px solid #343A40;
+    margin: 2vh;
+}
+.lista-zelja-header {
+   /* border-bottom: 5px solid #343A40;*/
+    height: 12% !important;
+}
+.lista-zelja-items {
+    height: 35vh;
+    width: 90%;
+    margin: auto;
+    overflow-y: auto;
+    border: 5px solid #343A40;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+.lista-zelja .list-group {
+    height: 35vh;
+}
+.lista-zelja-item {
+    border-left: 5px solid #343A40;
+    width: 92%;
+    margin: auto;
+    border-bottom: 5px solid white;
+    border-top: 0;
+    border-right: 0;
+}
+footer {
+    border-top: 1px solid #343A40;
+    border-right: 1px solid #343A40;
+    height: 5vh;
+    width: 100%;
+    position: fixed;
+    bottom:0;
+    background-color: '#343A40' !important;
+}
+.footer a:hover {
+    border-bottom: 2px solid #343A40;
+}
+.footer img {
+    width: 3vh;
+    height: 3vh;
+    margin: auto;
+}
+main {
+    height: 75vh;
+}
+.my-table-container {
+    border: 5px solid #343A40;
+    margin-left: 3vh;
+    padding: 1vh;
+}
+.my-table-header {
+    width: 95%;
+    border-left: 5px solid #343A40;
+    margin: 2vh auto;
+}
+.trosak-novi-container {
+    border: 5px solid #343A40;
+    height: 37vh;
+}
+.trosak-novi-header {
+    width: 95%;
+    border-left: 5px solid #343A40;
+    margin: 3vh auto;
+}
+
+.dodaj-brzo-container {
+    border: 5px solid #343A40;
+    height: 37vh;
+    width: 95%;
+}
+.dodaj-brzo-header {
+    width: 95%;
+    border-left: 5px solid #343A40;
+    border-right: 5px solid #343A40;
+    margin: 3vh auto;
+}
+.login-container {
+    margin: 12vh auto;
+    width: 27vw;
+    border: 5px solid #343A40;
+    height: 55vh;
+    position: relative;
+}
+::placeholder {
+    font-size: 12px;
+}
+.login-input{
+    width: 14vw !important;
+    margin:auto;
+}
+.no-acc {
+    position: absolute;
+    bottom: 0;
+    left: 7.5vw;
+}
+.register-container {
+    margin: 12vh auto;
+    border: 5px solid #343A40;
+    width: 55vw;
+    height: 70vh;
+}
+.register-container img {
+    width: 14vw;
+    height: 14vh;
+    margin: auto;
+}
+.register-container .row {
+    height: 100%;
+    width: 100%;
+}
+.register-container .col {
+    border-right: rgb(189, 187, 187) 1px solid;
+}
+.logo-holder-register {
+    margin: 0;
+    position: absolute;
+    top: 41%;
+    left: 25%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+.register-label {
+    margin-top: 5px;
+}
+.table-registracija input, select {
+    border: 1px solid #343A40;
+    width: 14vw;
+    font-size: 14px;
+}
+input[type=date] {
+    width: 14vw;
+    color: rgb(172, 172, 172);
+}
+.bg-light {
+    background: #ADA996;  
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); 
+}
+footer {
+    border-top: 5px solid #343A40;
+    background: #ADA996;  
+    background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #343A40);  
+    background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #343A40); 
+}
+.register-label {
+    font-weight: bolder;
+    font-size: small;
+    text-transform: uppercase;
+    border-right: 10px;
+}
+td input {
+    border: 1px solid #343A40;
+    border-radius: 0.1rem;
+}
+
+
+
+/* SLIDER KONTROLA SA W3 SCHOOLS, IZMENI */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #fbc10a;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #fbc10a;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .prikaz-korisnika {
+      margin: auto;
+      border: 5px solid black;
+      width: 30vw;
+  }
+.prikaz-korisnika .row {
+    width: 30vw;
+}
+
+.prikaz-detalja-prihoda {
+    margin: auto;
+    border: 5px solid black;
+    width: 30vw;
+}
+.edit-icon {
+    cursor: pointer;
+}
+.my-table-holder {
+    overflow-y: auto;
+    height: 37vh;
+}

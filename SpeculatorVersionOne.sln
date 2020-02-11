@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeculatorVersionOne", "SpeculatorVersionOne.csproj", "{C3A36323-7BC6-48A7-BA49-27FA8D09FBB3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3A36323-7BC6-48A7-BA49-27FA8D09FBB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A36323-7BC6-48A7-BA49-27FA8D09FBB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A36323-7BC6-48A7-BA49-27FA8D09FBB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A36323-7BC6-48A7-BA49-27FA8D09FBB3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {11EACC46-7CE6-4817-8E55-E7D44C9B9CD6}
+	EndGlobalSection
+EndGlobal

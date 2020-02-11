@@ -1,0 +1,175 @@
+﻿@model SpeculatorVersionOne.ViewModels.ListaZeljaViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+    <main class="container-fluid">
+        <div class="pocetna-sadrzaj">
+            <div class="row">
+                <div class="col">
+                    <div class="my-card-group">
+                        <div class="row">
+                            <div class="col bg-light">
+                                <h4 class="text-dark mt-2">
+                                    Najčešći trošak</h4>
+                                    <hr class="mt-0">
+                                    <div class="my-card">
+                                        <h1 class="text-danger">N/A</h1>
+                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Naziv</th>
+                                                    <th scope="col">Iznos</th>
+                                                    <th scope="col">Vreme</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"></th>
+                                                    <td>Kafa</td>
+                                                    <td>2.00$</td>
+                                                    <td>25.10.2019</td>
+                                                    <td><button class="btn btn-warning text-light">Troškovi</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>*@
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col bg-light">
+                                <h4 class="text-dark mt-2">
+                                    Nadolazeći trošak</h4>
+                                    <hr class="mt-0">
+                                    <div class="my-card">
+                                        <h1 class="text-danger">N/A</h1>
+                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Naziv</th>
+                                                    <th scope="col">Iznos</th>
+                                                    <th scope="col">Vreme</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"></th>
+                                                    <td>Skolarina</td>
+                                                    <td>270.00$</td>
+                                                    <td>25.01.2020</td>
+                                                    <td><button class="btn btn-warning text-light">Troškovi</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>*@
+                                    </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col bg-light">
+                                <h4 class="text-dark mt-2">
+                                    Nadolazeći priliv</h4>
+                                    <hr class="mt-0">
+                                    <div class="my-card">
+                                        <h1 class="text-danger">N/A</h1>
+                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col"></th>
+                                                    <th scope="col">Naziv</th>
+                                                    <th scope="col">Iznos</th>
+                                                    <th scope="col">Vreme</th>
+                                                    <th scope="col"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row"></th>
+                                                    <td>Comtrade</td>
+                                                    <td>3200.00$</td>
+                                                    <td>27.10.2020</td>
+                                                    <td><button class="btn btn-warning text-light">Prilivi</button></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>*@
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="bg-light lista-zelja">
+                        <div class="row lista-zelja-header">
+                            <div class="col">
+                                <h4 class="text-dark text-left mt-4">Lista želja</h4>
+                            </div>
+                        </div>
+
+                        <div class="lista-zelja-items">
+                            @if (Model.proizvodi.Count > 0)
+                            {
+                                <ul class="list-group">
+                                    @foreach (var item in Model.proizvodi)
+                                    {
+                                        <li class="list-group-item bg-dark lista-zelja-item">
+                                            <p class="text-light text-left">@Html.DisplayFor(modelItem => item.NazivProizvoda)</p>
+                                            <p class="text-light text-left">@Html.DisplayFor(modelItem => item.CenaProizvoda)</p>
+                                            <p class="text-light text-left">Procenjeno vreme kupovine: nedostupno.</p>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <h3 class="text-danger mb-5 ml-3">Ne postoje proizvodi za prikaz.</h3>
+                            }
+                        </div>
+                        <div class="lista-zelja-dodaj">
+                            <button class="btn btn-warning text-light float-right mt-4 mr-4" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                Dodaj novi
+                            </button>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card bg-light ml-3 card-body">
+
+
+                                    <form method="post" asp-action="NoviProizvod">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-row align-items-center">
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">Aa</div>
+                                                    </div>
+                                                    <input asp-for="proizvod.NazivProizvoda" class="form-control" id="inlineFormInputGroup">
+                                                    <span asp-validation-for="proizvod.NazivProizvoda" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <label class="sr-only" for="inlineFormInputGroup"></label>
+                                                <div class="input-group mb-2">
+                                                    <div class="input-group-prepend">
+                                                        <div class="input-group-text">$</div>
+                                                    </div>
+                                                    <input asp-for="proizvod.CenaProizvoda" class="form-control" id="inlineFormInputGroup">
+                                                    <span asp-validation-for="proizvod.CenaProizvoda" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="submit" class="btn btn-warning mb-2">Dodaj</button>
+                                                <small class="text-danger ml-2" id="dodaj-trosak-msg" hidden>Neuspešno!</small>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

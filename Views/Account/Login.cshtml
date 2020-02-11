@@ -1,0 +1,57 @@
+﻿@using SpeculatorVersionOne.ViewModels
+@model LoginViewModel
+@{
+    ViewBag.Title = "Prijava";
+    Layout = null;
+}
+
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous" />
+<link rel="stylesheet" href="~/css/styles.css" />
+<script src="https://kit.fontawesome.com/6642bd1fcc.js" crossorigin="anonymous"></script>
+
+<div class="login-container bg-light text-center my-custom-background">
+    <h1 class="text-dark mt-5"><b>Dobrodošli</b></h1>
+    <img class="navbar-logo" src="~/images/logoSC.png">
+
+    <form method="post" asp-action="Login" class="mt-5">     
+        <div class="col-auto">
+            <label class="sr-only" for="login-email"></label>
+            <div class="input-group mb-2 login-input">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-user"></i></div>
+                </div>
+                <input asp-for="Email" class="form-control" id="login-email" placeholder="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-auto">
+            <label class="sr-only" for="login-password"></label>
+            <div class="input-group mb-2 login-input">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                </div>
+                <input asp-for="Password" class="form-control" id="login-password" placeholder="Lozinka">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="checkbox">
+                <label asp-for="RememberMe"></label>
+                <label asp-for="RememberMe">
+                    <input asp-for="RememberMe" />
+                </label>
+            </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+        </div>
+        <small class="text-danger" id="login-greska" hidden>Neuspešna prijava!</small>
+        <div class="col-auto">
+            <button type="submit" asp-action="Login" class="btn btn-warning mt-3">Prijavi se</button>
+        </div>
+    </form>
+    <div class="text-center no-acc">
+        <p class="text-dark">Nemate nalog? <a asp-action="Register"><b>Registracija</b></a></p>
+    </div>
+
+
+</div>

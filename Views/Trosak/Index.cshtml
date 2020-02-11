@@ -1,0 +1,161 @@
+﻿@model SpeculatorVersionOne.ViewModels.TroskoviViewModel
+@{
+    ViewData["Title"] = "Index";
+    var message = ViewBag.UspesnoPoruka;
+}
+
+    <script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+    </script>
+    <main class="container-fluid">      
+        <div class="pocetna-sadrzaj">
+            <div class="row">
+                <div class="col-5">
+                    <div class="my-table-container bg-light">
+                        <div class="row my-table-header">
+                            <div class="col">
+                                <h4 class="text-dark text-left mt-1">Troškovi</h4>
+                            </div>
+                            <div class="col text-right">
+                                <p class="text-danger mt-1" id="trosak-brisanje" hidden>Nije moguće izbrisati trošak.</p>
+                            </div>
+                        </div>
+                        @if (Model.troskovi.Count > 0)
+                        {
+                            <div style="overflow-y: auto; height:30vh;">
+                                <table class="table table-hover table-dark m-auto">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Naziv</th>
+                                            <th scope="col">Iznos</th>
+                                            <th scope="col">Vreme</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.troskovi)
+                                        {
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NazivTroska)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.IznosTroska)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.VremeTroska)
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col text-right">
+                                                            <form method="GET" asp-controller="Trosak" asp-action="Details" asp-route-id="@item.TrosakId">
+                                                                <button type="submit" class="btn bg-primary text-light" title="Details"><i class="far fa-edit"></i></button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col text-left">
+                                                            <form method="POST" asp-controller="Trosak" asp-action="Delete" asp-route-id="@item.TrosakId">
+                                                                <button type="submit" class="btn bg-primary text-light" title="Delete"><i class="far fa-trash-alt"></i></button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                        else
+                        {
+                            <h3 class="text-danger mb-5 ml-3">Ne postoje troškovi za prikaz.</h3>
+                        }
+                        <div class="row mt-2">
+                            <div class="col-1 text-center ml-3">
+                                <label class="switch">
+                                    <input type="checkbox" id="cbPrikaziJednokratneTroskove" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <p class="text-dark mt-1 ml-3">Jednokratni troškovi</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-1 text-center ml-3">
+                                <label class="switch">
+                                    <input type="checkbox" id="cbPrikaziStalneTroskove" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <p class="text-dark mt-1 ml-3">Stalni troškovi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7">
+                    <div class="row">
+                        <div class="col">
+                            <div class="trosak-novi-container bg-light">
+                                <div class="trosak-novi-header">
+                                    <h4 class="text-dark text-left mt-3 ml-3">Novi trošak</h4>
+                                </div>
+                                <form method="post" asp-action="Create">
+                                    <div asp-validation-summary="All"></div>
+                                    <div class="form-group row ml-1 mr-1">
+                                        <label asp-for="trosak.NazivTroska" class="col-sm-2 col-form-label"></label>
+                                        <div class="col-sm-5">
+                                            <input asp-for="trosak.NazivTroska" class="form-control" id="inputNazivTroska" placeholder="">
+                                            <span asp-validation-for="trosak.NazivTroska" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-1 mr-1">
+                                        <label asp-for="trosak.IznosTroska" class="col-sm-2 col-form-label"></label>
+                                        <div class="col-sm-5">
+                                            <input asp-for="trosak.IznosTroska" class="form-control" id="inputIznosTroska" placeholder="">
+                                            <span asp-validation-for="trosak.IznosTroska" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row ml-1 mr-1">
+                                        <label for="inputIznosTroska" class="col-sm-4 col-form-label">Stalni trošak</label>
+                                        <div class="col-sm-4">
+                                            <label class="switch">
+                                                <input type="checkbox" id="cbStalniTrosak">
+                                                <span class="slider round"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row ml-1 mr-1">
+                                        <label for="inputVremenskiInterval" class="col-sm-2 col-form-label">Interval</label>
+                                        <div class="col-sm-5">
+                                            <input type="text" class="form-control" id="inputVremenskiIntervalTrosak" placeholder="" disabled title="Vremenski interval nakon kog će se trošak ponoviti">
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <button type="submit" class="btn btn-warning text-light">Dodaj</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="dodaj-brzo-container bg-light">
+                                <div class="dodaj-brzo-header">
+                                    <h4 class="text-dark text-center mt-3 ml-3">Uobičajeni troškovi</h4>
+                                </div>
+                                <div class="text-center">
+                                    <a class="text-warning" style="cursor: pointer;">+ Dodaj novi</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>

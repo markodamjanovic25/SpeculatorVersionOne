@@ -1,0 +1,156 @@
+﻿@model SpeculatorVersionOne.ViewModels.PrihodiViewModel
+@{
+    ViewData["Title"] = "Index";
+    var message = ViewBag.UspesnoPoruka;
+}
+
+
+    <script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+    </script>
+
+    <main class="container-fluid">
+        <div class="pocetna-sadrzaj">
+            <div class="row">
+                <div class="col-1">
+
+                </div>
+                <div class="col-5">
+                    <div class="my-table-container bg-light">
+                        <div class="row my-table-header">
+                            <div class="col">
+                                <h4 class="text-dark text-left mt-1">Prilivi</h4>
+                            </div>
+                        </div>
+                        @if (Model.prihodi.Count > 0)
+                        {
+                            <div style="overflow-y: auto; height: 30vh;">
+
+                                <table class="table table-hover table-dark m-auto">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Naziv</th>
+                                            <th scope="col">Iznos</th>
+                                            <th scope="col">Vreme</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.prihodi)
+                                        {
+                                            <tr>
+                                                <th scope="row"></th>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.NazivPrihoda)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.IznosPrihoda)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.VremePrihoda)
+                                                </td>
+                                                <td>
+                                                    <div class="row">
+                                                        <div class="col text-right">
+                                                            <form method="GET" asp-controller="Priliv" asp-action="Details" asp-route-id="@item.PrihodId">
+                                                                <button type="submit" class="btn bg-primary text-light" title="Details"><i class="far fa-edit"></i></button>
+                                                            </form>
+                                                        </div>
+                                                        <div class="col text-left">
+                                                            <form method="POST" asp-controller="Priliv" asp-action="Delete" asp-route-id="@item.PrihodId">
+                                                                <button type="submit" class="btn bg-primary text-light" title="Delete"><i class="far fa-trash-alt"></i></button>
+                                                            </form>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        }
+                        else
+                        {
+                            <h3 class="text-danger mb-5 ml-3">Ne postoje prilivi za prikaz.</h3>
+                        }
+                        <div class="row mt-2">
+                            <div class="col-1 text-right ml-3">
+                                <label class="switch">
+                                    <input type="checkbox" id="cbPrikaziJednokratnePrilive" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <p class="text-dark mt-1 ml-3">Jednokratni prilivi</p>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-1 text-center ml-3">
+                                <label class="switch">
+                                    <input type="checkbox" id="cbPrikaziStalnePrilive" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <div class="col-9">
+                                <p class="text-dark mt-1 ml-3">Stalni prilivi</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-5">
+                    <div class="trosak-novi-container bg-light">
+                        <div class="trosak-novi-header">
+                            <h4 class="text-dark text-left mt-3 ml-3">Novi priliv</h4>
+                        </div>
+                        <form method="post" asp-action="Create">
+                            <div asp-validation-summary="All"></div>
+                            <div class="form-group row ml-1 mr-1">
+                                <label asp-for="prihod.NazivPrihoda" class="col-sm-2 col-form-label text-right"></label>
+                                <div class="col-sm-5">
+                                    <input asp-for="prihod.NazivPrihoda" class="form-control" id="inputNazivPriliva" placeholder="">
+                                    <span asp-validation-for="prihod.NazivPrihoda" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row ml-1 mr-1">
+                                <label asp-for="prihod.IznosPrihoda" class="col-sm-2 col-form-label text-right"></label>
+                                <div class="col-sm-5">
+                                    <input asp-for="prihod.IznosPrihoda" class="form-control" id="inputIznosPriliva" placeholder="">
+                                    <span asp-validation-for="prihod.IznosPrihoda" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row ml-1 mr-1">
+                                <label for="inputIznosPriliva" class="col-sm-4 col-form-label">Stalni priliv</label>
+                                <div class="col-sm-4 text-left">
+                                    <label class="switch">
+                                        <input type="checkbox" id="cbStalniPriliv">
+                                        <span class="slider round"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row ml-1 mr-1">
+                                <label for="inputVremenskiInterval" class="col-sm-2 col-form-label text-right">Interval</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="inputVremenskiIntervalPriliv" placeholder="" disabled title="Vremenski interval nakon kog će se trošak ponoviti">
+                                </div>
+                                <div class="col-sm-4">
+                                    <button type="submit" class="btn btn-warning text-light">Dodaj</button>
+                                    <small class="text-success ml-2" id="dodaj-trosak-msg" hidden>Uspešno!</small>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div class="col-1">
+
+                </div>
+            </div>
+        </div>
+    </main>

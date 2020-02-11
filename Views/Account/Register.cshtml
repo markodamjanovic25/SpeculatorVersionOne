@@ -1,0 +1,123 @@
+﻿@model Korisnik
+
+@{
+    ViewBag.Title = "Registracija";
+ Layout = null;
+}
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous" />
+<link rel="stylesheet" href="~/css/styles.css" />
+<script src="https://kit.fontawesome.com/6642bd1fcc.js" crossorigin="anonymous"></script>
+
+<div class="register-container bg-light">
+
+    <div class="row">
+        <div class="col">
+            <div class="m-auto text-right logo-holder-register">
+                <img src="~/images/logoSC.png">
+            </div>
+        </div>
+        <div class="col border-0">
+            <div class="text-center" style="height: 20%; width: 100%;">
+                <h2 class="text-dark font-weight-bolder mt-5">Registracija naloga</h2>
+            </div>
+            <div style="height: 80%; width: 100%;">
+                <form method="post" asp-action="Register" name="forma-registracija" id="forma-registracija">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <table class="table-registracija" style="margin: auto;">
+                        <tr>
+                            <th>
+
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="Ime">Ime</label>
+                            </td>
+                            <td class="input-cell">
+                                <input asp-for="Ime" required>
+                                <span asp-validation-for="Ime" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Unesite ime." id="errorIme" hidden></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="Prezime">Prezime</label>
+                            </td>
+                            <td class="input-cell">
+                                <input asp-for="Prezime" id="inputPrezime" required>
+                                <span asp-validation-for="Prezime" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Unesite prezime." id="errorPrezime" hidden></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="Email">Email adresa</label>
+                            </td>
+                            <td class="input-cell">
+                                <input asp-for="Email" id="inputEmail" required>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Unesite email adresu." id="errorEmail" hidden></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="Lozinka">Lozinka</label>
+                            </td>
+                            <td class="input-cell">
+                                <input asp-for="Lozinka" minlength="8" required>
+                                <span asp-validation-for="Lozinka" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Lozinka mora biti od minimum 8 karaktera." id="errorPassword" hidden></i>
+                            </td>
+                        </tr>
+                        @*<tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="PotvrdaLozinke"></label>
+                            </td>
+                            <td class="input-cell">
+                                <input type="password" asp-for="PotvrdaLozinke" required>
+                                <span asp-validation-for="PotvrdaLozinke" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Ponovite lozinku." id="errorPonovljenPassword" hidden></i>
+                            </td>
+                        </tr>*@
+                        <tr>
+                            <td class="text-right register-label mr-3">
+                                <label class="register-label mr-3" asp-for="StanjeNaRacunu">Stanje</label>
+                            </td>
+                            <td class="input-cell">
+                                <input asp-for="StanjeNaRacunu" id="inputStanje" required>
+                                <span asp-validation-for="StanjeNaRacunu" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <i class="fas fa-question-circle" title="Unesite količinu novca sa kojom želite da raspolažete." id="errorStanje" hidden></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-right" colspan="2">
+                                <small class="text-danger" id="registracija-msg" hidden>Morate popuniti sva polja!</small>
+                                <button type="submit" asp-controller="Account" asp-action="Register" class="btn btn-warning" id="btnRegistracija">Registruj me</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
