@@ -12,6 +12,7 @@ namespace SpeculatorVersionOne.Models
         // dodaj novu kupovinu
         Kupovina DodajNovuKupovinu(int trosakId, string korisnikId);
         ICollection<Trosak> VratiTroskove(string id);
+
         //void ObrisiTrosak(int id);
 
     }

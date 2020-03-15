@@ -24,7 +24,6 @@ namespace SpeculatorVersionOne.Models
             context.SaveChanges();
             return trosak;
         }
-
         public Kupovina DodajNovuKupovinu(int trosakId, string korisnikId)
         {
             Kupovina kupovina = new Kupovina();
@@ -47,9 +46,7 @@ namespace SpeculatorVersionOne.Models
                                     on t.TrosakId equals k.TrosakId
                                     where k.KorisnikId == id
                                     select t).ToList();
-
-
-           return troskoviZaPrikaz;
+            return troskoviZaPrikaz;
         }
     }
 }

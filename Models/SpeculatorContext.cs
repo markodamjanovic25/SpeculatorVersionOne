@@ -27,7 +27,7 @@ namespace SpeculatorVersionOne.Models
             {
 #pragma warning disable CS1030 // #warning directive
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-IAEGLHR;Database=Speculator;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Speculator;Trusted_Connection=true");
 #pragma warning restore CS1030 // #warning directive
             }
         }
@@ -37,16 +37,6 @@ namespace SpeculatorVersionOne.Models
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Korisnik>(entity =>
             {
-                //entity.HasKey(e => e.KorisnikId);
-
-                //entity.Property(e => e.KorisnikId)
-                //    .HasColumnName("KorisnikID")
-                //    .ValueGeneratedNever();
-
-                //entity.Property(e => e.Email)
-                   //.IsRequired()
-                    //.HasMaxLength(50);
-
                 entity.Property(e => e.Ime)
                     .IsRequired()
                     .HasMaxLength(30)

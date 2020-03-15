@@ -75,27 +75,41 @@ namespace SpeculatorVersionOne.Controllers
         {
             if (ModelState.IsValid)
             { 
-                Trosak noviTrosak = troskoviRepository.DodajNoviTrosak(trosak); //dodavanje novog troska
-                Kupovina k = troskoviRepository.DodajNovuKupovinu(trosak.TrosakId, UzmiUserId());
-                ViewBag.UspesnoPoruka = "Uspesno dodavanje novog troska!";
+                    Trosak noviTrosak = troskoviRepository.DodajNoviTrosak(trosak); //dodavanje novog troska
+                    Kupovina k = troskoviRepository.DodajNovuKupovinu(trosak.TrosakId, UzmiUserId());
+                    ViewBag.UspesnoPoruka = "Uspesno dodavanje novog troska!";
             }
             return PopuniViewModel();
         }
 
-        [HttpGet]
-        public IActionResult Delete(int? id)
+        [HttpPost]
+        public IActionResult CreateById(int trosakId)
         {
-            if (id == null)
-                {
-                    return NotFound();
-                }
-            var trosak = context.Troskovi.FirstOrDefault(t => t.TrosakId == id);
-            if(trosak == null)
+            Trosak trosakZaPonavljanje = null;
+            try
             {
-                return NotFound();
+                trosakZaPonavljanje = (from t in context.Troskovi
+                                              where t.TrosakId == trosakId
+                                              select t).Single();
             }
-            return View(trosak);
-                
+            catch(Exception ex)
+            {
+                ViewBag.UspesnoPoruka = ex.Message;
+            }
+            if (trosakZaPonavljanje != null)
+            {
+                Trosak noviTrosak = new Trosak
+                {
+                    NazivTroska = trosakZaPonavljanje.NazivTroska,
+                    IznosTroska = trosakZaPonavljanje.IznosTroska
+                };
+
+                Trosak dodatTrosak = troskoviRepository.DodajNoviTrosak(noviTrosak);
+                Kupovina k = troskoviRepository.DodajNovuKupovinu(noviTrosak.TrosakId, UzmiUserId());
+                ViewBag.UspesnoPoruka = "Uspesno dodavanje novog troska!";
+            }
+
+            return PopuniViewModel();
         }
 
         public Kupovina KupovinaZaBrisanje(int id)
@@ -116,6 +130,7 @@ namespace SpeculatorVersionOne.Controllers
             context.Kupovine.Remove(kupovina);
             context.Troskovi.Remove(trosak);
             context.SaveChanges();
+            ViewBag.UspesnoPoruka = "Uspesno brisanje!";
             return RedirectToAction("Index");
         }
 
@@ -137,7 +152,7 @@ namespace SpeculatorVersionOne.Controllers
             
             context.Troskovi.Update(trosakZaIzmenu);
             context.SaveChanges();
-            
+            ViewBag.UspesnoPoruka = "Uspesna izmena!";
             return PopuniViewModel();
         }
 

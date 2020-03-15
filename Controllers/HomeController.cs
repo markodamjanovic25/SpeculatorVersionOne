@@ -15,13 +15,13 @@ namespace SpeculatorVersionOne.Controllers
     {
         private readonly SpeculatorContext context;
         private readonly IListaZeljaRepository listaZeljaRepository;
-        ListaZeljaViewModel listaZeljaVM;
+        HomeViewModel homeVM;
 
         public HomeController(SpeculatorContext context, IListaZeljaRepository listaZeljaRepository)
         {
             this.context = context;
             this.listaZeljaRepository = listaZeljaRepository;
-            listaZeljaVM = new ListaZeljaViewModel();
+            homeVM = new HomeViewModel();
         }
 
         //
@@ -37,10 +37,11 @@ namespace SpeculatorVersionOne.Controllers
         //funkcija koja popunjava objekat troskoviviewmodel-a kako bi mogli da se proslede modeli pogledu
         public IActionResult PopuniViewModel()
         {
-            listaZeljaVM.proizvod = new Proizvod();
-            listaZeljaVM.proizvodi = listaZeljaRepository.VratiProizvode(UzmiUserId()).ToList();
-            listaZeljaVM.Stanje = VratiStanje();
-            return View("Index", listaZeljaVM);
+            homeVM.proizvod = new Proizvod();
+            homeVM.proizvodi = listaZeljaRepository.VratiProizvode(UzmiUserId()).ToList();
+            homeVM.najcesciTrosak = VratiNajcesciTrosak();
+            homeVM.Stanje = VratiStanje();
+            return View("Index", homeVM);
         }
 
         //
@@ -63,6 +64,35 @@ namespace SpeculatorVersionOne.Controllers
             return stanje;
         }
 
+        //funkcija koja vraca najcesci trosak
+        //ukoliko nema upisanih troskova vraca N/A
+        public Trosak VratiNajcesciTrosak()
+        {
+
+            try
+            {
+                var najcesciTroskovi = (from t in context.Troskovi
+                                        join k in context.Kupovine
+                                        on t.TrosakId equals k.TrosakId
+                                        where k.KorisnikId == UzmiUserId()
+                                        orderby t.NazivTroska.Count() descending
+                                        select t).ToList();
+                return najcesciTroskovi.First();
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.UspesnoPoruka = ex.Message;
+            }
+
+            return new Trosak
+            {
+                NazivTroska = "/",
+                IznosTroska = 0
+            };
+                
+        }
+
         [HttpPost]
         public IActionResult NoviProizvod(Proizvod proizvod)
         {
@@ -70,6 +100,7 @@ namespace SpeculatorVersionOne.Controllers
                 Proizvod p = listaZeljaRepository.DodajNoviProizvod(proizvod);
                 ZeljeniProizvod zp = listaZeljaRepository.DodajNoviZeljeniProizvod(proizvod.ProizvodId, UzmiUserId());           
             }
+            ViewBag.UspesnoPoruka = "Uspesno dodavanje!";
             return PopuniViewModel();
         }
 

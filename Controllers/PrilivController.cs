@@ -75,23 +75,35 @@ namespace SpeculatorVersionOne.Controllers
 
             return PopuniViewModel();
         }
-
-        [HttpGet]
-        public IActionResult Delete(int? id)
+        [HttpPost]
+        public IActionResult CreateById(int prihodId)
         {
-            if (id == null)
+            Prihod prihodZaPonavljanje = null;
+            try
             {
-                return NotFound();
+                prihodZaPonavljanje = (from p in context.Prihodi
+                                       where p.PrihodId == prihodId
+                                       select p).Single();
             }
-            var prihod = context.Prihodi.FirstOrDefault(t => t.PrihodId == id);
-            if (prihod == null)
+            catch (Exception ex)
             {
-                return NotFound();
+                ViewBag.UspesnoPoruka = ex.Message;
             }
-            return View(prihod);
+            if (prihodZaPonavljanje != null)
+            {
+                Prihod noviPrihod = new Prihod
+                {
+                    NazivPrihoda = prihodZaPonavljanje.NazivPrihoda,
+                    IznosPrihoda = prihodZaPonavljanje.IznosPrihoda
+                };
 
+                Prihod dodatPrihod = prihodiRepository.DodajNoviPrihod(noviPrihod);
+                Priliv p = prihodiRepository.DodajNoviPriliv(noviPrihod.PrihodId, UzmiUserId());
+                ViewBag.UspesnoPoruka = "Uspesno dodavanje novog troska!";
+            }
+
+            return PopuniViewModel();
         }
-
         public Priliv PrilivZaBrisanje(int id)
         {
             var prilivi = context.Prilivi;
@@ -110,6 +122,7 @@ namespace SpeculatorVersionOne.Controllers
             context.Prilivi.Remove(priliv);
             context.Prihodi.Remove(prihod);
             context.SaveChanges();
+            ViewBag.UspesnoPoruka = "Uspesno brisanje!";
             return RedirectToAction("Index");
         }
 
@@ -131,7 +144,7 @@ namespace SpeculatorVersionOne.Controllers
             
             context.Prihodi.Update(prihodZaIzmenu);
             context.SaveChanges();
-            
+            ViewBag.UspesnoPoruka = "Uspesna izmena!";
             return PopuniViewModel();
         }
     }
