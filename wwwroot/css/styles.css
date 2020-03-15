@@ -4,6 +4,9 @@ body {
     padding: 0; 
     /*background: linear-gradient(to right, #ada996, #f2f2f2, #dbdbdb, #eaeaea);*/
 }
+.card {
+    border: 0;
+}
 ::-webkit-scrollbar {
     width: 1vw;
   }
@@ -61,6 +64,7 @@ body {
 .my-card {
     height: 12vh;
     width: 32vw;
+    text-align: center;
 }
 .my-card-group {
     width: 35vw;
@@ -87,7 +91,6 @@ body {
     width: 90%;
     margin: auto;
     overflow-y: auto;
-    border: 5px solid #343A40;
     border-left: 0;
     border-right: 0;
     border-top: 0;
@@ -98,8 +101,7 @@ body {
 .lista-zelja-item {
     border-left: 5px solid #343A40;
     width: 92%;
-    margin: auto;
-    border-bottom: 5px solid white;
+    margin: auto;   
     border-top: 0;
     border-right: 0;
 }
@@ -125,13 +127,18 @@ main {
 }
 .my-table-container {
     border: 5px solid #343A40;
-    margin-left: 3vh;
     padding: 1vh;
 }
 .my-table-header {
     width: 95%;
+    border-right: 5px solid #343A40;
     border-left: 5px solid #343A40;
+    text-align: center;
     margin: 2vh auto;
+}
+.my-table {
+    overflow: auto;
+    max-height: 25vh;
 }
 .trosak-novi-container {
     border: 5px solid #343A40;
@@ -139,8 +146,10 @@ main {
 }
 .trosak-novi-header {
     width: 95%;
+    border-right: 5px solid #343A40;
     border-left: 5px solid #343A40;
     margin: 3vh auto;
+    text-align: center;
 }
 
 .dodaj-brzo-container {
@@ -211,11 +220,11 @@ input[type=date] {
     width: 14vw;
     color: rgb(172, 172, 172);
 }
-.bg-light {
+/*.bg-light {
     background: #ADA996;  
     background: -webkit-linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996);  
     background: linear-gradient(to right, #EAEAEA, #DBDBDB, #F2F2F2, #ADA996); 
-}
+}*/
 footer {
     border-top: 5px solid #343A40;
     background: #ADA996;  
@@ -319,4 +328,9 @@ td input {
 .my-table-holder {
     overflow-y: auto;
     height: 37vh;
+}
+
+.under-construction-img {
+    width: 25vw;
+    height: 10vh;
 }

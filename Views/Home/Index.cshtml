@@ -1,7 +1,15 @@
-﻿@model SpeculatorVersionOne.ViewModels.ListaZeljaViewModel
+﻿@model SpeculatorVersionOne.ViewModels.HomeViewModel
 @{
     ViewData["Title"] = "Home Page";
+    var message = ViewBag.UspesnoPoruka;
 }
+
+    <script type="text/javascript">
+    var message = '@message';
+    if(message){
+        alert(message);
+    }
+    </script>
 
     <main class="container-fluid">
         <div class="pocetna-sadrzaj">
@@ -14,38 +22,39 @@
                                     Najčešći trošak</h4>
                                     <hr class="mt-0">
                                     <div class="my-card">
-                                        <h1 class="text-danger">N/A</h1>
-                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                        @* <img src="~/images/underConstructionSC.png" alt="under construction" /> *@
+                                        @* <h1 class="text-danger">N/A</h1> *@
+                                        <table class="table table-responsive table-borderless table-dark ml-1 text-center">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
                                                     <th scope="col">Naziv</th>
                                                     <th scope="col">Iznos</th>
-                                                    <th scope="col">Vreme</th>
+                                                    
                                                     <th scope="col"></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th scope="row"></th>
-                                                    <td>Kafa</td>
-                                                    <td>2.00$</td>
-                                                    <td>25.10.2019</td>
+                                                    <td>@Model.najcesciTrosak.NazivTroska</td>
+                                                    <td>@Model.najcesciTrosak.IznosTroska</td>
                                                     <td><button class="btn btn-warning text-light">Troškovi</button></td>
                                                 </tr>
                                             </tbody>
-                                        </table>*@
+                                        </table>
                                     </div>
                             </div>
                         </div>
-                        <div class="row">
+                        @*<div class="row">
                             <div class="col bg-light">
                                 <h4 class="text-dark mt-2">
                                     Nadolazeći trošak</h4>
                                     <hr class="mt-0">
                                     <div class="my-card">
-                                        <h1 class="text-danger">N/A</h1>
-                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                        <img src="~/images/underConstructionSC.png" alt="under construction" />
+                                        @*<h1 class="text-danger">N/A</h1>
+                                        <table class="table table-responsive table-borderless table-dark ml-1 text-center">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -64,7 +73,7 @@
                                                     <td><button class="btn btn-warning text-light">Troškovi</button></td>
                                                 </tr>
                                             </tbody>
-                                        </table>*@
+                                        </table>
                                     </div>
                             </div>
                         </div>
@@ -74,8 +83,9 @@
                                     Nadolazeći priliv</h4>
                                     <hr class="mt-0">
                                     <div class="my-card">
-                                        <h1 class="text-danger">N/A</h1>
-                                        @*<table class="table table-responsive table-borderless table-dark ml-1 text-center">
+                                        <img src="~/images/underConstructionSC.png" alt="under construction" />
+                                        @*<h1 class="text-danger">N/A</h1>
+                                        <table class="table table-responsive table-borderless table-dark ml-1 text-center">
                                             <thead>
                                                 <tr>
                                                     <th scope="col"></th>
@@ -94,10 +104,10 @@
                                                     <td><button class="btn btn-warning text-light">Prilivi</button></td>
                                                 </tr>
                                             </tbody>
-                                        </table>*@
+                                        </table>
                                     </div>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
                 <div class="col">
